@@ -1,123 +1,126 @@
----
+### SanityScrew++ Language Documentation
 
-# Unicorn++ Programming Language Documentation
+Welcome to SanityScrew++, an esoteric programming language designed to drive you mad with its unpredictable syntax and absurd commands. This documentation will guide you through the chaotic world of SanityScrew++, where order doesn't matter, and every line of code is a rollercoaster ride of randomness.
 
-## Table of Contents
-1. **Introduction**
-2. **Language Basics**
-   - 2.1 Variables
-   - 2.2 Memory Tape
-   - 2.3 Input and Output
-3. **Control Structures**
-   - 3.1 Loops
-   - 3.2 Conditionals
-4. **Operations and Syntax**
-   - 4.1 Operations List
-   - 4.2 Syntax Rules
-5. **Compilation and Execution**
-   - 5.1 Compilation Steps
-   - 5.2 Execution Modes
-6. **Examples**
-7. **Advanced Features**
-   - 7.1 Object-Oriented Concepts
-   - 7.2 Library Integration
-8. **FAQs**
-9. **Resources**
+#### Commands
 
----
+1. **FLIBBER X**
+   - **Description:** Assigns a random variable a value X.
+   - **Example:** `FLIBBER 42`
 
-## 1. Introduction
-Unicorn++ is a whimsical programming language designed to blend the absurdity of unicorn-related operations with the practicality of C++ syntax. It allows programmers to write code that manipulates a memory tape using magical symbols and operations.
+2. **BLORP VAR**
+   - **Description:** Prints the value of variable VAR.
+   - **Example:** `BLORP Heisenberg`
 
-## 2. Language Basics
+3. **ZAP**
+   - **Description:** Randomly skips the next line or does nothing.
+   - **Example:** `ZAP`
 
-### 2.1 Variables
-Unicorn++ supports variable declarations using the 🖍️ symbol followed by the variable name and initial value:
+4. **FOO**
+   - **Description:** Prints a random number.
+   - **Example:** `FOO`
 
-```unicorn
-🖍️ myVar 42
+5. **BAZ**
+   - **Description:** Prints the current time.
+   - **Example:** `BAZ`
+
+6. **SELFDESTRUCT**
+   - **Description:** Erases the current line of code.
+   - **Example:** `SELFDESTRUCT`
+
+7. **LOOPHOLE**
+   - **Description:** Jumps to a random line in the code.
+   - **Example:** `LOOPHOLE`
+
+8. **DUPLICATE**
+   - **Description:** Duplicates a random line of code.
+   - **Example:** `DUPLICATE`
+
+9. **BIZARRO**
+   - **Description:** Swaps the values of two random variables.
+   - **Example:** `BIZARRO`
+
+10. **YELL**
+    - **Description:** Prints "AAAAAAAAAA!"
+    - **Example:** `YELL`
+
+11. **MOO**
+    - **Description:** Prints "Moo."
+    - **Example:** `MOO`
+
+12. **WARP**
+    - **Description:** Reverses the entire code order.
+    - **Example:** `WARP`
+
+13. **DANCE**
+    - **Description:** Prints a series of random dance moves.
+    - **Example:** `DANCE`
+
+14. **COOK [Hot dog]**
+    - **Description:** "Cooks" a line of code, enabling special commands.
+    - **Example:** `COOK 2`
+
+15. **INJECT [Product]**
+    - **Description:** Assigns a variable with a value, influenced by the "purity" of the product (random multiplier).
+    - **Example:** `INJECT 42`
+
+16. **TRIP [VAR]**
+    - **Description:** Prints the value of a variable in a hallucinated way (random variations).
+    - **Example:** `TRIP Heisenberg`
+
+17. **HEISENBERG**
+    - **Description:** Changes the state of the interpreter unpredictably.
+    - **Example:** `HEISENBERG`
+
+18. **EXPLODE**
+    - **Description:** Randomly modifies the code sequence.
+    - **Example:** `EXPLODE`
+
+19. **METHHEAD**
+    - **Description:** Introduces wild behavior, making the program chaotic.
+    - **Example:** `METHHEAD`
+
+20. **OVERDOSE**
+    - **Description:** Ends the program abruptly.
+    - **Example:** `OVERDOSE`
+
+#### Special Features
+
+- **Duolingo Integration**
+  - If a task (DUO command) is not completed, the Duolingo owl threatens you with consequences.
+  
+- **Rick and Morty References**
+  - Perform random actions inspired by Rick and Morty with the RICK command.
+
+- **Spaghetti with Glock-19 Made of Gummy Bears**
+  - Enjoy bizarre actions involving spaghetti and a gummy bear Glock-19 with the SPAGHETTI command.
+
+#### Example Program
+
+```plaintext
+--! This is a comment
+COOK 2
+INJECT 42
+TRIP Heisenberg
+HEISENBERG
+DUO
+RICK
+SPAGHETTI
+EXPLODE
+METHHEAD
+OVERDOSE
 ```
 
-### 2.2 Memory Tape
-The main data structure in Unicorn++ is a memory tape (`tape`) where operations manipulate the current pointer (`ptr`). It is initialized to a size of 30,000 by default.
+#### How to Run
 
-### 2.3 Input and Output
-- **Output**: Use 🪄 to output the character at the current pointer location.
-- **Input**: Use 🕳️ to input a character and store it at the current pointer location.
+1. **Compile:** Save the code in a file named `sanityscrew.cpp`.
+   - Compile using a C++ compiler, e.g., `g++ -o sanityscrew sanityscrew.cpp`.
+   
+2. **Prepare Program:** Save the example program in a file named `program.ss`.
+   
+3. **Execute:** Run the compiled program, e.g., `./sanityscrew`.
 
-## 3. Control Structures
+#### Notes
 
-### 3.1 Loops
-Unicorn++ supports loops using traditional C++ syntax within its whimsical framework:
-
-```unicorn
-🌀
-    🦄 // Increment
-🍭
-```
-
-### 3.2 Conditionals
-Currently, Unicorn++ does not support explicit conditionals but can integrate with libraries that support them.
-
-## 4. Operations and Syntax
-
-### 4.1 Operations List
-- **🦄**: Increment the value at the current pointer.
-- **🌈**: Decrement the value at the current pointer.
-- **🧚‍♀️**: Move the pointer to the right.
-- **🐉**: Move the pointer to the left.
-- **🪄**: Output the character at the current pointer.
-- **🕳️**: Input a character and store it at the current pointer.
-- **📝**: Output text (followed by text to output).
-- **🖍️**: Declare a variable (followed by variable name and initial value).
-- **🎠**: Perform a random operation (for whimsical purposes).
-
-### 4.2 Syntax Rules
-- Every statement in Unicorn++ ends with a newline.
-- Comments start with `#` and continue to the end of the line.
-- Variables are global and must be declared before use.
-
-## 5. Compilation and Execution
-
-### 5.1 Compilation Steps
-To compile Unicorn++ code:
-1. **Interpretation**: Read and parse the Unicorn++ code file.
-2. **Code Generation**: Generate equivalent C++ code with embedded operations.
-3. **Compilation**: Compile the generated C++ code using a C++ compiler (`g++`).
-
-### 5.2 Execution Modes
-- **-C**: Compile mode generates C++ code (`UrProgram.cpp`) and compiles it to an executable (`UrProgram`).
-- **-R**: Run mode interprets Unicorn++ code directly and performs operations.
-
-## 6. Examples
-### Hello World
-```unicorn
-📝 Hello, World!
-🪄
-```
-
-### Fibonacci Sequence
-```unicorn
-🖍️ n 10
-
-🖍️ a 0
-🖍️ b 1
-🖍️ c 0
-
-🌀
-    📝Fibonacci: 
-    📝
-    📝
-    📝 a
-    📝
-    📝
-    📝 b
-    📝
-    📝
-    📝 4
-    📝
-    📝 5
-    Output
-
-
-Here is the continuation part of the Fibonacci Sequence
+- **Randomness:** The behavior of SanityScrew++ is highly unpredictable due to its random nature.
+- **Madness:** Embrace the chaos and enjoy the journey through this bizarre programming language!
