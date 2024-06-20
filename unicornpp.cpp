@@ -1,7 +1,7 @@
 #include <iostream>
-#include <vector>
 #include <fstream>
 #include <stdexcept>
+#include <string>
 
 // Unicorn++ interpreter and compiler
 void interpretUnicorn(const std::string& code, const std::string& filename) {
@@ -11,6 +11,16 @@ void interpretUnicorn(const std::string& code, const std::string& filename) {
     }
 
     outFile << "#include <iostream>\n";
+    outFile << "#include <cstdio>\n"; // For getchar and putchar
+    outFile << "void unicorn_print(const char* str) {\n";
+    outFile << "std::cout << str;\n";
+    outFile << "}\n";
+    outFile << "void unicorn_println(const char* str) {\n";
+    outFile << "std::cout << str << std::endl;\n";
+    outFile << "}\n";
+    outFile << "void unicorn_input(char* ptr) {\n";
+    outFile << "*ptr = getchar();\n";
+    outFile << "}\n";
     outFile << "int main() {\n";
     outFile << "char tape[30000] = {0};\n";
     outFile << "char* ptr = tape;\n";
@@ -34,8 +44,20 @@ void interpretUnicorn(const std::string& code, const std::string& filename) {
                 outFile << "putchar(*ptr);\n";
                 break;
             case '🕳️': // Input a character and store it in the memory cell
-                outFile << "*ptr = getchar();\n";
+                outFile << "unicorn_input(ptr);\n";
                 break;
+            case '📝': { // Output text (string literal)
+                // Find the end of the string literal
+                size_t start = i + 1;
+                size_t end = code.find('📝', start);
+                if (end == std::string::npos) {
+                    throw std::runtime_error("Error: Unterminated string literal");
+                }
+                std::string text = code.substr(start, end - start);
+                outFile << "unicorn_print(\"" << text << "\");\n";
+                i = end; // Move to the end of the string literal
+                break;
+            }
             case '✨': { // Start a loop if the current memory cell is non-zero
                 outFile << "while (*ptr) {\n";
                 break;
