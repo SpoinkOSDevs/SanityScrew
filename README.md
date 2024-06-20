@@ -2,94 +2,122 @@
 
 # Unicorn++ Programming Language Documentation
 
-## Introduction
-
-Welcome to Unicorn++, the most absurd and illogical programming language ever conceived! Unicorn++ was designed with the sole purpose of confusing and amusing programmers. It combines elements of brain-bending operations with a touch of magical realism to create a truly unique coding experience.
-
-## Language Features
-
-### Data Types
-
-Unicorn++ supports the following data types:
-
-- **Integer**: A single-byte integer stored in each memory cell of the tape.
-
-### Operations
-
-Unicorn++ provides a variety of absurd operations:
-
-- **Increment (`🦄`)**: Increments the value at the current memory cell.
-- **Decrement (`🌈`)**: Decrements the value at the current memory cell.
-- **Move Right (`🧚‍♀️`)**: Moves the pointer to the right on the tape.
-- **Move Left (`🐉`)**: Moves the pointer to the left on the tape.
-- **Output (`🪄`)**: Outputs the ASCII character of the current memory cell.
-- **Input (`🕳️`)**: Takes a character input and stores it in the current memory cell.
-- **Output Text (`📝`)**: Outputs a string literal until the sequence `7` is encountered.
-- **Variable Declaration/Assignment (`🖍️`)**: Declares or assigns a value to a variable.
-- **Boolean Check (`🔍`)**: Checks if a variable equals a specified value.
-- **Integer Input (`🍎`)**: Takes an integer input and stores it in a variable.
-- **Variable Output (`👀`)**: Outputs the value of a specified variable.
-- **Loop Start (`✨`)**: Starts a loop if the current memory cell is non-zero.
-- **Loop End (`💫`)**: Ends a loop if the current memory cell is non-zero.
-
-### Syntax
-
-- **Comments**: Lines starting with `#` are considered comments and are ignored.
-
-### Variables
-
-Variables in Unicorn++ are dynamically typed and can hold integer values. They are declared or assigned using the `🖍️` operator and accessed using the `👀` operator.
-
-### Example Program
-
-Here’s a classic "Hello, World!" program in Unicorn++:
-
-```unicorn
-🖍️ greeting 72
-🖍️ offset 13
-🦄
-🦄
-🦄
-🦄
-🧚‍♀️
-✨
-🌈
-💫
-📝 Hello, World!7
-🪄
-```
-
-This program declares two variables (`greeting` and `offset`), increments `greeting` to reach ASCII value 72, moves the pointer right, starts a loop, decrements `greeting` to reach ASCII value 72, ends the loop, outputs "Hello, World!".
-
-## Running Unicorn++
-
-To run Unicorn++ programs:
-
-1. **Interpreter Mode**: Execute a Unicorn++ program directly using the interpreter.
-   
-   ```bash
-   ./unicornpp -R program.unicorn
-   ```
-
-   Replace `program.unicorn` with your Unicorn++ program file.
-
-2. **Compilation Mode**: Generate a nonsensical C++ file (doesn't actually compile) from a Unicorn++ program.
-   
-   ```bash
-   ./unicornpp -C program.unicorn
-   ```
-
-   This mode creates a `program.cpp` file that resembles C++ but is utterly meaningless.
-
-## Options
-
-- **-R <filename.unicorn>**: Run the specified Unicorn++ program file.
-- **-C <filename.unicorn>**: Compile the specified Unicorn++ program file into a nonsensical C++ file.
-
-## Notes
-
-Unicorn++ is meant for entertainment purposes only and should not be used for any serious programming tasks. Have fun exploring the absurdity of Unicorn++ and embrace the chaos!
+## Table of Contents
+1. **Introduction**
+2. **Language Basics**
+   - 2.1 Variables
+   - 2.2 Memory Tape
+   - 2.3 Input and Output
+3. **Control Structures**
+   - 3.1 Loops
+   - 3.2 Conditionals
+4. **Operations and Syntax**
+   - 4.1 Operations List
+   - 4.2 Syntax Rules
+5. **Compilation and Execution**
+   - 5.1 Compilation Steps
+   - 5.2 Execution Modes
+6. **Examples**
+7. **Advanced Features**
+   - 7.1 Object-Oriented Concepts
+   - 7.2 Library Integration
+8. **FAQs**
+9. **Resources**
 
 ---
 
-Feel free to add more whimsical features or expand on the absurdity as you see fit. Happy coding (or should we say, happy unicorn-ing)! 🦄
+## 1. Introduction
+Unicorn++ is a whimsical programming language designed to blend the absurdity of unicorn-related operations with the practicality of C++ syntax. It allows programmers to write code that manipulates a memory tape using magical symbols and operations.
+
+## 2. Language Basics
+
+### 2.1 Variables
+Unicorn++ supports variable declarations using the 🖍️ symbol followed by the variable name and initial value:
+
+```unicorn
+🖍️ myVar 42
+```
+
+### 2.2 Memory Tape
+The main data structure in Unicorn++ is a memory tape (`tape`) where operations manipulate the current pointer (`ptr`). It is initialized to a size of 30,000 by default.
+
+### 2.3 Input and Output
+- **Output**: Use 🪄 to output the character at the current pointer location.
+- **Input**: Use 🕳️ to input a character and store it at the current pointer location.
+
+## 3. Control Structures
+
+### 3.1 Loops
+Unicorn++ supports loops using traditional C++ syntax within its whimsical framework:
+
+```unicorn
+🌀
+    🦄 // Increment
+🍭
+```
+
+### 3.2 Conditionals
+Currently, Unicorn++ does not support explicit conditionals but can integrate with libraries that support them.
+
+## 4. Operations and Syntax
+
+### 4.1 Operations List
+- **🦄**: Increment the value at the current pointer.
+- **🌈**: Decrement the value at the current pointer.
+- **🧚‍♀️**: Move the pointer to the right.
+- **🐉**: Move the pointer to the left.
+- **🪄**: Output the character at the current pointer.
+- **🕳️**: Input a character and store it at the current pointer.
+- **📝**: Output text (followed by text to output).
+- **🖍️**: Declare a variable (followed by variable name and initial value).
+- **🎠**: Perform a random operation (for whimsical purposes).
+
+### 4.2 Syntax Rules
+- Every statement in Unicorn++ ends with a newline.
+- Comments start with `#` and continue to the end of the line.
+- Variables are global and must be declared before use.
+
+## 5. Compilation and Execution
+
+### 5.1 Compilation Steps
+To compile Unicorn++ code:
+1. **Interpretation**: Read and parse the Unicorn++ code file.
+2. **Code Generation**: Generate equivalent C++ code with embedded operations.
+3. **Compilation**: Compile the generated C++ code using a C++ compiler (`g++`).
+
+### 5.2 Execution Modes
+- **-C**: Compile mode generates C++ code (`UrProgram.cpp`) and compiles it to an executable (`UrProgram`).
+- **-R**: Run mode interprets Unicorn++ code directly and performs operations.
+
+## 6. Examples
+### Hello World
+```unicorn
+📝 Hello, World!
+🪄
+```
+
+### Fibonacci Sequence
+```unicorn
+🖍️ n 10
+
+🖍️ a 0
+🖍️ b 1
+🖍️ c 0
+
+🌀
+    📝Fibonacci: 
+    📝
+    📝
+    📝 a
+    📝
+    📝
+    📝 b
+    📝
+    📝
+    📝 4
+    📝
+    📝 5
+    Output
+
+
+Here is the continuation part of the Fibonacci Sequence
