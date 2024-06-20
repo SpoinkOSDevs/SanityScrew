@@ -31,12 +31,6 @@ Unicorn++ provides a variety of absurd operations:
 - **Variable Output (`👀`)**: Outputs the value of a specified variable.
 - **Loop Start (`✨`)**: Starts a loop if the current memory cell is non-zero.
 - **Loop End (`💫`)**: Ends a loop if the current memory cell is non-zero.
-- **Rocket Launch (`🚀`)**: Launches a rocket (completely illogical!).
-- **Use Toilet Paper (`🧻`)**: Uses toilet paper (because why not!).
-- **Celebrate (`🎉`)**: Celebrates for no reason at all.
-- **Summon Robot (`🤖`)**: Summons a robot (because every program needs one!).
-- **Stop Everything (`🛑`)**: Stops everything (for emergency situations, like when a unicorn appears!).
-- **Output Nonsense (`💩`)**: Outputs pure nonsense (because why be logical!).
 
 ### Syntax
 
