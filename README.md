@@ -1,4 +1,5 @@
 The Syntax;
+    
     Commands:
 
     🦄: Increment the memory cell at the pointer.
