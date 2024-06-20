@@ -114,11 +114,11 @@ OVERDOSE
 #### How to Run
 
 1. **Compile:** Save the code in a file named `sanityscrew.cpp`.
-   - Compile using a C++ compiler, e.g., `g++ -o sanityscrew sanityscrew.cpp`.
+   - Compile using a C++ compiler, e.g., `g++ -o sanityscrew sanityscrew.cpp`. (Or GLobal Install Via Installer)
    
 2. **Prepare Program:** Save the example program in a file named `program.ss`.
    
-3. **Execute:** Run the compiled program, e.g., `./sanityscrew`.
+3. **Execute:** Run the compiled program, e.g., `./program`.
 
 #### Notes
 
