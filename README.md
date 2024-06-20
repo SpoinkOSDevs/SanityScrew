@@ -121,7 +121,9 @@ OVERDOSE
 3. **Execute:** Run the compiled program, e.g., `./program`.
 
 ##### Program Arguments
-`--HELPMEIMLOSINGMYSANITY`
+`--HELPMEIMLOSINGMYSANITY` - **Does Nothing**
+`--FIFC` - **Input files for compiling**
+`--OFTLD` - **Output to working dir**
 #### Notes
 
 - **Randomness:** The behavior of SanityScrew++ is highly unpredictable due to its random nature.
