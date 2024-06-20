@@ -124,7 +124,7 @@ OVERDOSE
 `-HELPMEIMLOSINGMYSANITY` - **Help Screen**
 `-FIFC` - **Input files for compiling**
 `-OFTLD` - **Output to working dir**
-`-INST` - **The Installer**
+`-IST` - **The Installer**
 #### Notes
 
 - **Randomness:** The behavior of SanityScrew++ is highly unpredictable due to its random nature.
