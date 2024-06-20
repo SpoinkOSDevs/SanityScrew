@@ -5,7 +5,6 @@
 #include <vector>
 #include <unordered_map>
 #include <chrono> // For delay
-#include <thread> // For sleep
 
 // Define the memory tape and pointer
 char tape[30000] = {0};
@@ -146,67 +145,37 @@ void executeOperation(char op, std::ifstream& file) {
             }
             break;
         }
-        case '🚀': { // Launch a rocket (totally illogical!)
-            std::cout << "\n🚀 Rocket launched!\n";
-            break;
-        }
-        case '🧻': { // Use toilet paper (why not!)
-            std::cout << "\n🧻 Toilet paper used!\n";
-            break;
-        }
-        case '🎉': { // Celebrate (completely unnecessary!)
-            std::cout << "\n🎉 Celebration time!\n";
-            break;
-        }
-        case '🤖': { // Summon a robot (because logic!)
-            std::cout << "\n🤖 Robot summoned!\n";
-            break;
-        }
-        case '🛑': { // Stop everything (absolutely illogical!)
-            std::cout << "\n🛑 Stop everything!\n";
-            break;
-        }
-        case '💩': { // Output nonsense (totally absurd!)
-            std::cout << "\n💩 Nonsense output!\n";
-            break;
-        }
         default:
             break; // Ignore any other characters
     }
 }
 
-// Stupid obfuscation function (even more illogical!)
+// Stupid obfuscation function
 void obfuscateOperation(char& op) {
-    // Add random delays
-    int delayMs = std::rand() % 50;
-    std::this_thread::sleep_for(std::chrono::milliseconds(delayMs));
+    // Add pointless delays
+    std::this_thread::sleep_for(std::chrono::milliseconds(10));
 
-    // Swap random operations (why not!)
+    // Reverse operations (for no reason!)
     switch (op) {
         case '🦄':
+            op = '🌈';
+            break;
         case '🌈':
+            op = '🦄';
+            break;
         case '🧚‍♀️':
+            op = '🐉';
+            break;
         case '🐉':
+            op = '🧚‍♀️';
+            break;
         case '🪄':
+            op = '🕳️';
+            break;
         case '🕳️':
-        case '📝':
-        case '🖍️':
-        case '🔍':
-        case '🍎':
-        case '👀':
-        case '✨':
-        case '💫':
-        case '🚀':
-        case '🧻':
-        case '🎉':
-        case '🤖':
-        case '🛑':
-        case '💩':
-            break; // Leave as is
+            op = '🪄';
+            break;
         default:
-            // Swap with a random operation
-            char newOp = "🦄🌈🧚‍♀️🐉🪄🕳️📝🖍️🔍🍎👀✨💫🚀🧻🎉🤖🛑💩"[std::rand() % 20];
-            op = newOp;
             break;
     }
 }
@@ -229,12 +198,21 @@ int main(int argc, char* argv[]) {
 
     try {
         if (option == "-C") {
-            // Compilation mode (just for show, doesn't actually compile anything!)
-            std::cout << "Compiling " << filename << "..." << std::endl;
-            std::this_thread::sleep_for(std::chrono::seconds(2));
-            std::cout << "Compilation successful. Created a mess of files!" << std::endl;
+            // Compilation mode
+            std::ofstream outFile(filename + ".cpp");
+            if (!outFile.is_open()) {
+                throw std::runtime_error("Error: Could not create output file " + filename + ".cpp");
+            }
+            // Write dummy C++ code (because why not!)
+            outFile << "#include <iostream>\n";
+            outFile << "int main() {\n";
+            outFile << "std::cout << \"Hello, World!\" << std::endl;\n";
+            outFile << "return 0;\n";
+            outFile << "}\n";
+            outFile.close();
+            std::cout << "Compilation successful. Executable '" << filename << ".cpp' created." << std::endl;
         } else if (option == "-R") {
-            // Run mode (execute the Unicorn++ program)
+            // Run mode
             interpretUnicorn(filename);
         } else {
             std::cerr << "Error: Unknown option '" << option << "'" << std::endl;
