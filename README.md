@@ -220,14 +220,3 @@ Example:
 ```
 
 ---
-
-## 7. FAQs
-
-### Common Issues
-
-_(List common issues and errors users might encounter and their solutions.)_
-
-### Troubleshooting
-
-_(Provide troubleshooting tips for debugging Unicorn++ programs.)_
----
