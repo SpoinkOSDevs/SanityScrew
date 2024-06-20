@@ -1,12 +1,12 @@
 #!/bin/bash
 
-# Compile the Unicorn++ interpreter
-g++ -o unicornpp unicornpp.cpp
+# Compile the interpreter
+g++ -o SanityScrew SanityScrew.cpp
 
 # Move the interpreter to /usr/local/bin
-sudo mv unicornpp /usr/local/bin
+sudo mv SantyScrew /usr/local/bin
 
 # Make the interpreter executable
-sudo chmod +x /usr/local/bin/unicornpp
+sudo chmod +x /usr/local/bin/SanityScrew
 
-echo "Unicorn++ has been installed. You can run your .unicorn files using 'unicornpp <filename.unicorn>'"
+echo "SanityScrew has been installed."
