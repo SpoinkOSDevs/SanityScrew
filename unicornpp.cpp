@@ -1,218 +1,163 @@
 #include <iostream>
 #include <fstream>
 #include <stdexcept>
-#include <string>
 #include <vector>
 #include <unordered_map>
-#include <chrono> // For delay
+#include <memory>
+#include <cstdlib> // For system()
 
-// Define the memory tape and pointer
-char tape[30000] = {0};
+// Memory tape and pointer
+constexpr int TAPE_SIZE = 30000;
+char tape[TAPE_SIZE] = {0};
 char* ptr = tape;
 
 // Variable storage
-std::unordered_map<std::string, int> variables; // Map for storing variables
+std::unordered_map<std::string, int> variables;
 
-// Function prototypes
-void interpretUnicorn(const std::string& code);
-void executeOperation(char op, std::ifstream& file);
-void obfuscateOperation(char& op);
+// Base class for Unicorn++ objects
+class UnicornObject {
+public:
+    virtual ~UnicornObject() = default;
+    virtual void execute() = 0;
+};
 
-// Unicorn++ interpreter
-void interpretUnicorn(const std::string& code) {
-    std::ifstream file(code);
+// Derived object for output operation
+class OutputObject : public UnicornObject {
+    std::string text;
+public:
+    explicit OutputObject(const std::string& t) : text(t) {}
+    void execute() override {
+        std::cout << text;
+    }
+};
+
+// JIT execution function
+void jitExecute(const std::vector<std::shared_ptr<UnicornObject>>& objects) {
+    for (const auto& obj : objects) {
+        obj->execute();
+    }
+}
+
+// Function to interpret and JIT compile Unicorn++ code
+void interpretUnicorn(const std::string& filename) {
+    std::ifstream file(filename);
     if (!file.is_open()) {
-        throw std::runtime_error("Error: Could not open file " + code);
+        throw std::runtime_error("Error: Could not open file " + filename);
     }
 
+    std::vector<std::shared_ptr<UnicornObject>> objects;
+
     std::string line;
+    int lineCount = 0;
     while (std::getline(file, line)) {
-        // Skip empty lines or comments (lines starting with '#')
+        ++lineCount;
         if (line.empty() || line[0] == '#') {
             continue;
         }
 
-        // Obfuscate operations (just for fun!)
-        for (char& op : line) {
-            obfuscateOperation(op);
+        char op = line[0];
+        switch (op) {
+            case '🦄': // Increment
+                objects.emplace_back(std::make_shared<OutputObject>("Incrementing memory\n"));
+                break;
+            case '🌈': // Decrement
+                objects.emplace_back(std::make_shared<OutputObject>("Decrementing memory\n"));
+                break;
+            case '🧚‍♀️': // Move right
+                objects.emplace_back(std::make_shared<OutputObject>("Moving pointer to the right\n"));
+                break;
+            case '🐉': // Move left
+                objects.emplace_back(std::make_shared<OutputObject>("Moving pointer to the left\n"));
+                break;
+            case '🪄': // Output
+                objects.emplace_back(std::make_shared<OutputObject>("Outputting character\n"));
+                break;
+            case '🕳️': // Input
+                objects.emplace_back(std::make_shared<OutputObject>("Inputting character\n"));
+                break;
+            case '📝': { // Output text
+                std::string text = line.substr(1); // Remove the '📝'
+                objects.emplace_back(std::make_shared<OutputObject>(text + "\n"));
+                break;
+            }
+            case '🖍️': { // Variable declaration
+                std::string varName = line.substr(1, line.find(' ', 1) - 1);
+                int value = std::stoi(line.substr(line.find(' ', 1) + 1));
+                variables[varName] = value;
+                break;
+            }
+            case '🎠': // Random operation
+                objects.emplace_back(std::make_shared<OutputObject>("Performing random operation 🎠\n"));
+                break;
+            default:
+                std::cerr << "Warning: Unknown operation at line " << lineCount << ": " << line << std::endl;
+                break; // Ignore unknown operations
         }
-
-        // Execute operations from the line
-        executeOperation(line[0], file);
     }
 
     file.close();
-}
 
-// Execute operations based on the first character of the line
-void executeOperation(char op, std::ifstream& file) {
-    switch (op) {
-        case '🦄': // Increment the memory cell at the pointer
-            ++*ptr;
-            break;
-        case '🌈': // Decrement the memory cell at the pointer
-            --*ptr;
-            break;
-        case '🧚‍♀️': // Move the pointer to the right
-            ++ptr;
-            break;
-        case '🐉': // Move the pointer to the left
-            --ptr;
-            break;
-        case '🪄': // Output the character at the memory cell
-            putchar(*ptr);
-            break;
-        case '🕳️': // Input a character and store it in the memory cell
-            *ptr = getchar();
-            break;
-        case '📝': { // Output text (string literal)
-            std::string text;
-            std::getline(file, text, '7'); // Read until '7'
-            std::cout << text;
-            break;
-        }
-        case '🖍️': { // Declare or assign a variable
-            std::string varName;
-            int value;
-            file >> varName >> value;
-            variables[varName] = value;
-            break;
-        }
-        case '🔍': { // Find operation (boolean check)
-            std::string varName;
-            int value;
-            file >> varName >> value;
-            if (variables.count(varName) && variables[varName] == value) {
-                executeOperation('🦄', file); // Increment if true
-            }
-            break;
-        }
-        case '🍎': { // Input an integer and store it in a variable
-            std::string varName;
-            int value;
-            std::cin >> value;
-            file >> varName; // Read variable name
-            variables[varName] = value;
-            break;
-        }
-        case '👀': { // Output the value of a variable
-            std::string varName;
-            file >> varName;
-            if (variables.count(varName)) {
-                std::cout << variables[varName];
-            } else {
-                std::cerr << "Error: Variable " << varName << " not found!" << std::endl;
-            }
-            break;
-        }
-        case '✨': { // Start a loop if the current memory cell is non-zero
-            if (*ptr == 0) {
-                // Find the matching 💫 to skip the loop
-                int loopDepth = 1;
-                while (loopDepth > 0) {
-                    std::getline(file, line);
-                    if (line.empty() || line[0] == '#') {
-                        continue;
-                    }
-                    if (line[0] == '✨') {
-                        ++loopDepth;
-                    } else if (line[0] == '💫') {
-                        --loopDepth;
-                    }
-                }
-            }
-            break;
-        }
-        case '💫': { // End a loop if the current memory cell is non-zero
-            if (*ptr != 0) {
-                // Find the matching ✨ to jump back to the loop start
-                int loopDepth = 1;
-                std::streampos pos = file.tellg();
-                while (loopDepth > 0 && std::getline(file, line)) {
-                    if (line.empty() || line[0] == '#') {
-                        continue;
-                    }
-                    if (line[0] == '💫') {
-                        ++loopDepth;
-                    } else if (line[0] == '✨') {
-                        --loopDepth;
-                    }
-                }
-                if (loopDepth > 0) {
-                    throw std::runtime_error("Error: Unterminated loop");
-                }
-                file.seekg(pos); // Jump back to the loop start
-            }
-            break;
-        }
-        default:
-            break; // Ignore any other characters
+    // Generate C++ code with injected Unicorn++ operations
+    std::string cppCode = "#include <iostream>\n"
+                          "int main() {\n"
+                          "    char tape[" + std::to_string(TAPE_SIZE) + "] = {0};\n"
+                          "    char* ptr = tape;\n"
+                          "    std::unordered_map<std::string, int> variables;\n";
+
+    for (const auto& obj : objects) {
+        cppCode += "    // ";
+        obj->execute(); // Log verbose output
     }
+
+    cppCode += "    // TODO: Insert Unicorn++ operations here\n"
+               "    return 0;\n"
+               "}\n";
+
+    std::cout << "Generated C++ code:\n" << cppCode << std::endl;
+
+    // JIT execution of Unicorn++ code
+    jitExecute(objects);
 }
 
-// Stupid obfuscation function
-void obfuscateOperation(char& op) {
-    // Add pointless delays
-    std::this_thread::sleep_for(std::chrono::milliseconds(10));
+// Function to write C++ code to a file
+void writeCppFile(const std::string& cppCode) {
+    std::ofstream outputFile("UrProgram.cpp");
+    if (!outputFile.is_open()) {
+        throw std::runtime_error("Error: Could not create output file");
+    }
+    outputFile << cppCode;
+    outputFile.close();
+}
 
-    // Reverse operations (for no reason!)
-    switch (op) {
-        case '🦄':
-            op = '🌈';
-            break;
-        case '🌈':
-            op = '🦄';
-            break;
-        case '🧚‍♀️':
-            op = '🐉';
-            break;
-        case '🐉':
-            op = '🧚‍♀️';
-            break;
-        case '🪄':
-            op = '🕳️';
-            break;
-        case '🕳️':
-            op = '🪄';
-            break;
-        default:
-            break;
+// Function to compile C++ code into an executable
+void compileToExecutable(const std::string& cppFileName) {
+    std::string compileCommand = "g++ " + cppFileName + " -o UrProgram";
+    int compileResult = system(compileCommand.c_str());
+    if (compileResult != 0) {
+        throw std::runtime_error("Error: Compilation failed");
     }
 }
 
 int main(int argc, char* argv[]) {
-    if (argc < 2) {
+    if (argc < 3) {
         std::cerr << "Usage: " << argv[0] << " [-C|-R] <filename.unicorn>" << std::endl;
         return 1;
     }
 
     std::string option = argv[1];
-    std::string filename;
-
-    if (argc == 3) {
-        filename = argv[2];
-    } else {
-        std::cerr << "Error: Missing filename argument" << std::endl;
-        return 1;
-    }
+    std::string filename = argv[2];
 
     try {
         if (option == "-C") {
-            // Compilation mode
-            std::ofstream outFile(filename + ".cpp");
-            if (!outFile.is_open()) {
-                throw std::runtime_error("Error: Could not create output file " + filename + ".cpp");
-            }
-            // Write dummy C++ code (because why not!)
-            outFile << "#include <iostream>\n";
-            outFile << "int main() {\n";
-            outFile << "std::cout << \"Hello, World!\" << std::endl;\n";
-            outFile << "return 0;\n";
-            outFile << "}\n";
-            outFile.close();
-            std::cout << "Compilation successful. Executable '" << filename << ".cpp' created." << std::endl;
+            // Compilation mode (generate C++ code and compile to executable)
+            interpretUnicorn(filename);
+            std::string cppCode = "// Generated by Unicorn++ Compiler\n" + cppCode; // Example of how to get cppCode here
+            writeCppFile(cppCode);
+            compileToExecutable("UrProgram.cpp");
+            std::cout << "Compilation successful. Executable file created: UrProgram" << std::endl;
+
         } else if (option == "-R") {
-            // Run mode
+            // Run mode (execute the Unicorn++ program)
             interpretUnicorn(filename);
         } else {
             std::cerr << "Error: Unknown option '" << option << "'" << std::endl;
