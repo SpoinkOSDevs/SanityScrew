@@ -121,7 +121,7 @@ OVERDOSE
 3. **Execute:** Run the compiled program, e.g., `./program`.
 
 ##### Program Arguments
---HELPMEIMLOSINGMYSANITY
+`--HELPMEIMLOSINGMYSANITY`
 #### Notes
 
 - **Randomness:** The behavior of SanityScrew++ is highly unpredictable due to its random nature.
