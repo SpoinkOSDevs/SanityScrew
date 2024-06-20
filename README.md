@@ -1,222 +1,101 @@
 ---
 
-# Unicorn++ Documentation
+# Unicorn++ Programming Language Documentation
 
-## Table of Contents
+## Introduction
 
-1. **Introduction**
-   - Overview
-   - Purpose
-   - Features
+Welcome to Unicorn++, the most absurd and illogical programming language ever conceived! Unicorn++ was designed with the sole purpose of confusing and amusing programmers. It combines elements of brain-bending operations with a touch of magical realism to create a truly unique coding experience.
 
-2. **Getting Started**
-   - Installation
-   - Hello World Example
+## Language Features
 
-3. **Language Syntax**
-   - Memory Operations
-   - Pointer Operations
-   - Input and Output
-   - Control Structures
+### Data Types
 
-4. **Standard Library Functions**
-   - `📝` - Output Text
-   - `🦄` - Increment Memory Cell
-   - `🌈` - Decrement Memory Cell
-   - `🧚‍♀️` - Move Pointer Right
-   - `🐉` - Move Pointer Left
-   - `🪄` - Output Character
-   - `🕳️` - Input Character
-   - `✨` - Start Loop
-   - `💫` - End Loop
+Unicorn++ supports the following data types:
 
-5. **Examples**
-   - Basic Examples
-   - Advanced Examples
+- **Integer**: A single-byte integer stored in each memory cell of the tape.
 
-6. **Interpreter/Compiler**
-   - Interpreter Features
-   - Compiler Features
-   - Command-Line Usage
+### Operations
 
-7. **FAQs**
-   - Common Issues
-   - Troubleshooting
+Unicorn++ provides a variety of absurd operations:
 
-8. **Appendix**
-   - Credits
-   - License
+- **Increment (`🦄`)**: Increments the value at the current memory cell.
+- **Decrement (`🌈`)**: Decrements the value at the current memory cell.
+- **Move Right (`🧚‍♀️`)**: Moves the pointer to the right on the tape.
+- **Move Left (`🐉`)**: Moves the pointer to the left on the tape.
+- **Output (`🪄`)**: Outputs the ASCII character of the current memory cell.
+- **Input (`🕳️`)**: Takes a character input and stores it in the current memory cell.
+- **Output Text (`📝`)**: Outputs a string literal until the sequence `7` is encountered.
+- **Variable Declaration/Assignment (`🖍️`)**: Declares or assigns a value to a variable.
+- **Boolean Check (`🔍`)**: Checks if a variable equals a specified value.
+- **Integer Input (`🍎`)**: Takes an integer input and stores it in a variable.
+- **Variable Output (`👀`)**: Outputs the value of a specified variable.
+- **Loop Start (`✨`)**: Starts a loop if the current memory cell is non-zero.
+- **Loop End (`💫`)**: Ends a loop if the current memory cell is non-zero.
+- **Rocket Launch (`🚀`)**: Launches a rocket (completely illogical!).
+- **Use Toilet Paper (`🧻`)**: Uses toilet paper (because why not!).
+- **Celebrate (`🎉`)**: Celebrates for no reason at all.
+- **Summon Robot (`🤖`)**: Summons a robot (because every program needs one!).
+- **Stop Everything (`🛑`)**: Stops everything (for emergency situations, like when a unicorn appears!).
+- **Output Nonsense (`💩`)**: Outputs pure nonsense (because why be logical!).
 
----
+### Syntax
 
-## 1. Introduction
+- **Comments**: Lines starting with `#` are considered comments and are ignored.
 
-### Overview
+### Variables
 
-Unicorn++ is an absurd and whimsical programming language inspired by esoteric languages like Brainfuck and Whitespace. It operates on a virtual tape of 30,000 memory cells and uses a pointer to manipulate and interact with these cells. Unicorn++ features a small set of unique symbols for memory manipulation, input/output operations, and control flow.
+Variables in Unicorn++ are dynamically typed and can hold integer values. They are declared or assigned using the `🖍️` operator and accessed using the `👀` operator.
 
-### Purpose
+### Example Program
 
-The primary goal of Unicorn++ is to provide a fun and challenging environment for programming enthusiasts to explore unconventional programming concepts. It encourages creativity and problem-solving through its minimalist syntax and unusual approach to computation.
+Here’s a classic "Hello, World!" program in Unicorn++:
 
-### Features
-
-- Simple and minimalistic syntax
-- Memory manipulation with increment and decrement operations (`🦄`, `🌈`)
-- Pointer movement (`🧚‍♀️`, `🐉`)
-- Input and output operations (`🪄`, `🕳️`)
-- Looping constructs (`✨`, `💫`)
-- Text output (`📝`)
-
----
-
-## 2. Getting Started
-
-### Installation
-
-Unicorn++ does not require installation of a separate runtime environment. You can directly use the provided interpreter/compiler script in any Linux environment that supports `g++`:
-
-1. **Download** the Unicorn++ interpreter/compiler script (`unicornpp.cpp`).
-2. **Compile** the script using `g++`:
-
-   ```sh
-   g++ -o unicornpp unicornpp.cpp
-   ```
-
-### Hello World Example
-
-Create a file named `hello_world.unicorn` with the following code:
-
-```plaintext
-📝Hello, World!📝
+```unicorn
+🖍️ greeting 72
+🖍️ offset 13
+🦄
+🦄
+🦄
+🦄
+🧚‍♀️
+✨
+🌈
+💫
+📝 Hello, World!7
 🪄
 ```
 
-Compile and execute the Unicorn++ program:
+This program declares two variables (`greeting` and `offset`), increments `greeting` to reach ASCII value 72, moves the pointer right, starts a loop, decrements `greeting` to reach ASCII value 72, ends the loop, outputs "Hello, World!".
 
-```sh
-./unicornpp hello_world.unicorn hello_world_program
-./hello_world_program
-```
+## Running Unicorn++
 
-Expected Output:
+To run Unicorn++ programs:
 
-```
-Hello, World!
-```
-
----
-
-## 3. Language Syntax
-
-### Memory Operations
-
-- `🦄`: Increment the value at the current memory cell.
-- `🌈`: Decrement the value at the current memory cell.
-
-### Pointer Operations
-
-- `🧚‍♀️`: Move the pointer to the right (increase memory cell index).
-- `🐉`: Move the pointer to the left (decrease memory cell index).
-
-### Input and Output
-
-- `🪄`: Output the character at the current memory cell.
-- `🕳️`: Input a character and store it in the current memory cell.
-- `📝`: Output a string of text enclosed in `📝...📝`.
-
-### Control Structures
-
-- `✨`: Start a loop if the current memory cell is not zero.
-- `💫`: End a loop if the current memory cell is not zero.
-
----
-
-## 4. Standard Library Functions
-
-### `📝` - Output Text
-
-Outputs a string of text. Example: `📝Hello, World!📝`
-
-### `🦄` - Increment Memory Cell
-
-Increments the value at the current memory cell.
-
-### `🌈` - Decrement Memory Cell
-
-Decrements the value at the current memory cell.
-
-### `🧚‍♀️` - Move Pointer Right
-
-Moves the pointer to the right (increase memory cell index).
-
-### `🐉` - Move Pointer Left
-
-Moves the pointer to the left (decrease memory cell index).
-
-### `🪄` - Output Character
-
-Outputs the character at the current memory cell.
-
-### `🕳️` - Input Character
-
-Inputs a character and stores it in the current memory cell.
-
-### `✨` - Start Loop
-
-Starts a loop if the current memory cell is not zero.
-
-### `💫` - End Loop
-
-Ends a loop if the current memory cell is not zero.
-
----
-
-## 5. Examples
-
-### Basic Examples
-
-1. **Hello, World!**
-
-   ```plaintext
-   📝Hello, World!📝
-   🪄
+1. **Interpreter Mode**: Execute a Unicorn++ program directly using the interpreter.
+   
+   ```bash
+   ./unicornpp -R program.unicorn
    ```
 
-   Output: `Hello, World!`
+   Replace `program.unicorn` with your Unicorn++ program file.
 
-### Advanced Examples
+2. **Compilation Mode**: Generate a nonsensical C++ file (doesn't actually compile) from a Unicorn++ program.
+   
+   ```bash
+   ./unicornpp -C program.unicorn
+   ```
 
-_(Provide more complex examples demonstrating loops, multiple output/input operations, etc.)_
+   This mode creates a `program.cpp` file that resembles C++ but is utterly meaningless.
 
----
+## Options
 
-## 6. Interpreter/Compiler
+- **-R <filename.unicorn>**: Run the specified Unicorn++ program file.
+- **-C <filename.unicorn>**: Compile the specified Unicorn++ program file into a nonsensical C++ file.
 
-### Interpreter Features
+## Notes
 
-- Translates Unicorn++ code into equivalent C++ code.
-- Handles memory operations, input/output, and control structures.
-- Outputs generated C++ code to a file.
-
-### Compiler Features
-
-- Compiles the generated C++ code into a binary executable.
-- Uses `g++` as the backend compiler.
-
-### Command-Line Usage
-
-To interpret and compile a Unicorn++ program:
-
-```sh
-./unicornpp <input_file.unicorn> <output_executable>
-```
-
-Example:
-
-```sh
-./unicornpp hello_world.unicorn hello_world_program
-./hello_world_program
-```
+Unicorn++ is meant for entertainment purposes only and should not be used for any serious programming tasks. Have fun exploring the absurdity of Unicorn++ and embrace the chaos!
 
 ---
+
+Feel free to add more whimsical features or expand on the absurdity as you see fit. Happy coding (or should we say, happy unicorn-ing)! 🦄
