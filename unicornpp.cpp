@@ -3,12 +3,8 @@
 #include <fstream>
 #include <stdexcept>
 
-// Unicorn++ interpreter
+// Unicorn++ interpreter and compiler
 void interpretUnicorn(const std::string& code, const std::string& filename) {
-    std::vector<int> memory(30000, 0);
-    int pointer = 0;
-    std::vector<size_t> loopStack;
-
     std::ofstream outFile(filename + ".cpp");
     if (!outFile.is_open()) {
         throw std::runtime_error("Error: Could not create output file " + filename + ".cpp");
@@ -19,9 +15,9 @@ void interpretUnicorn(const std::string& code, const std::string& filename) {
     outFile << "char tape[30000] = {0};\n";
     outFile << "char* ptr = tape;\n";
 
-    for (size_t i = 0; i < code.size(); ++i) {
-        char cmd = code[i];
-        switch (cmd) {
+    size_t i = 0;
+    while (i < code.size()) {
+        switch (code[i]) {
             case '🦄': // Increment the memory cell at the pointer
                 outFile << "++*ptr;\n";
                 break;
@@ -40,24 +36,18 @@ void interpretUnicorn(const std::string& code, const std::string& filename) {
             case '🕳️': // Input a character and store it in the memory cell
                 outFile << "*ptr = getchar();\n";
                 break;
-            case '✨': // Start a loop if the current memory cell is non-zero
+            case '✨': { // Start a loop if the current memory cell is non-zero
                 outFile << "while (*ptr) {\n";
-                loopStack.push_back(i);
                 break;
-            case '💫': // End a loop if the current memory cell is non-zero
-                if (loopStack.empty()) {
-                    throw std::runtime_error("Error: Unmatched loop end '💫'");
-                }
+            }
+            case '💫': { // End a loop if the current memory cell is non-zero
                 outFile << "}\n";
-                loopStack.pop_back();
                 break;
+            }
             default:
                 break; // Ignore any other characters
         }
-    }
-
-    if (!loopStack.empty()) {
-        throw std::runtime_error("Error: Unmatched loop start '✨'");
+        ++i;
     }
 
     outFile << "return 0;\n";
