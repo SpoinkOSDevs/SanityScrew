@@ -1,0 +1,71 @@
+name: Publish GitHub Release Artifacts
+description: |
+  This action uploads GitHub Actions build artifacts to a GitHub Release.
+author: Sierra Softworks
+inputs:
+  files:
+    required: true
+    description: |
+      A list of files to publish, relative to the repository root.
+
+      The files must be specified as a newline-delimited list of paths.
+
+      ```yaml
+      with:
+        files: |
+          - bin/release-windows
+          - bin/release-linux
+      ```
+
+  token:
+    required: false
+    description: |
+      The GitHub access token which will be used to upload release artifacts.
+
+      Usually this will be `secrets.GITHUB_TOKEN`.
+
+  overwrite:
+    required: false
+    description: |
+      Overwrite existing artifacts with the same name for the specified release.
+
+  release_tag:
+    required: false
+    description: |
+      The release tag which should receive the artifacts.
+      
+      By default this will be discovered based on the build environment, however
+      you may specify it here if automatic discovery does not work for your usecase.
+
+  vault-server:
+    required: false
+    description: |
+      The Hashicorp Vault server which should be used to generate signatures.
+
+  vault-token:
+    required: false
+    description: |
+      The token used to access Hashicorp Vault for generation of signatures.
+
+  vault-path:
+    required: false
+    description: |
+      The path that the Vault transit engine is mounted at (defaults to 'transit')
+
+  vault-signing-key:
+    required: false
+    description: |
+      The name of the signing key to use for signature generation through Vault.
+
+  vault-hash-algorithm:
+    required: false
+    description: |
+      The hash algorithm which should be used to generate a unique hash for the content being signed.
+
+runs:
+  using: 'node16'
+  main: 'dist/index.js'
+  
+branding:
+  icon: 'archive'
+  color: 'gray-dark'
