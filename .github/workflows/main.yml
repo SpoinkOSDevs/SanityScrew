@@ -12,10 +12,10 @@ with:
     - bin/release-linux
 ```
 
-    files: 
+    files: secrets.TOKEN
     # The GitHub access token which will be used to upload release artifacts.
 
-    token: # optional
+    token:
     # Overwrite existing artifacts with the same name for the specified release.
 
     overwrite: # optional
