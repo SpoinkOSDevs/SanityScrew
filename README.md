@@ -1,131 +1,91 @@
-### SanityScrew++ Language Documentation
+# SSJIT Compiler
 
-Welcome to SanityScrew++, an esoteric programming language designed to drive you mad with its unpredictable syntax and absurd commands. This documentation will guide you through the chaotic world of SanityScrew++, where order doesn't matter, and every line of code is a rollercoaster ride of randomness.
+SSJIT (SanityScrew Just-In-Time) Compiler is a tool for compiling and interpreting SanityScrew language code.
 
-#### Commands
+## Features
 
-1. **FLIBBER X**
-   - **Description:** Assigns a random variable a value X.
-   - **Example:** `FLIBBER 42`
+- Compiles SanityScrew code into C++ code
+- Interprets and executes compiled C++ code
+- Supports a wide range of SanityScrew commands and functionalities
 
-2. **BLORP VAR**
-   - **Description:** Prints the value of variable VAR.
-   - **Example:** `BLORP Heisenberg`
+## Getting Started
 
-3. **ZAP**
-   - **Description:** Randomly skips the next line or does nothing.
-   - **Example:** `ZAP`
+1. Clone the repository:
 
-4. **FOO**
-   - **Description:** Prints a random number.
-   - **Example:** `FOO`
+   ```bash
+   git clone https://github.com/your_username/ssjit-compiler.git
+   ```
 
-5. **BAZ**
-   - **Description:** Prints the current time.
-   - **Example:** `BAZ`
+2. Compile the SSJIT compiler:
 
-6. **SELFDESTRUCT**
-   - **Description:** Erases the current line of code.
-   - **Example:** `SELFDESTRUCT`
+   ```bash
+   g++ -o ssjit_compiler ssjit_compiler.cpp SSJIT.h
+   ```
 
-7. **LOOPHOLE**
-   - **Description:** Jumps to a random line in the code.
-   - **Example:** `LOOPHOLE`
+3. Run the compiler with a SanityScrew code file:
 
-8. **DUPLICATE**
-   - **Description:** Duplicates a random line of code.
-   - **Example:** `DUPLICATE`
+   ```bash
+   ./ssjit_compiler input_file.ss
+   ```
 
-9. **BIZARRO**
-   - **Description:** Swaps the values of two random variables.
-   - **Example:** `BIZARRO`
+## Usage
 
-10. **YELL**
-    - **Description:** Prints "AAAAAAAAAA!"
-    - **Example:** `YELL`
+The SSJIT compiler takes a SanityScrew code file as input and generates an executable that interprets and executes the code.
 
-11. **MOO**
-    - **Description:** Prints "Moo."
-    - **Example:** `MOO`
-
-12. **WARP**
-    - **Description:** Reverses the entire code order.
-    - **Example:** `WARP`
-
-13. **DANCE**
-    - **Description:** Prints a series of random dance moves.
-    - **Example:** `DANCE`
-
-14. **COOK [Hot dog]**
-    - **Description:** "Cooks" a line of code, enabling special commands.
-    - **Example:** `COOK 2`
-
-15. **INJECT [Product]**
-    - **Description:** Assigns a variable with a value, influenced by the "purity" of the product (random multiplier).
-    - **Example:** `INJECT 42`
-
-16. **TRIP [VAR]**
-    - **Description:** Prints the value of a variable in a hallucinated way (random variations).
-    - **Example:** `TRIP Heisenberg`
-
-17. **HEISENBERG**
-    - **Description:** Changes the state of the interpreter unpredictably.
-    - **Example:** `HEISENBERG`
-
-18. **EXPLODE**
-    - **Description:** Randomly modifies the code sequence.
-    - **Example:** `EXPLODE`
-
-19. **METHHEAD**
-    - **Description:** Introduces wild behavior, making the program chaotic.
-    - **Example:** `METHHEAD`
-
-20. **OVERDOSE**
-    - **Description:** Ends the program abruptly.
-    - **Example:** `OVERDOSE`
-
-#### Special Features
-
-- **Duolingo Integration**
-  - If a task (DUO command) is not completed, the Duolingo owl threatens you with consequences.
-  
-- **Rick and Morty References**
-  - Perform random actions inspired by Rick and Morty with the RICK command.
-
-- **Spaghetti with Glock-19 Made of Gummy Bears**
-  - Enjoy bizarre actions involving spaghetti and a gummy bear Glock-19 with the SPAGHETTI command.
-
-#### Example Program
-
-```plaintext
---! This is a comment
-COOK 2
-INJECT 42
-TRIP Heisenberg
-HEISENBERG
-DUO
-RICK
-SPAGHETTI
-EXPLODE
-METHHEAD
-OVERDOSE
+```bash
+./ssjit_compiler input_file.ss
 ```
 
-#### How to Run
+## Examples
 
-1. **Compile:** Save the code in a file named `sanityscrew.cpp`.
-   - Compile using a C++ compiler, e.g., `g++ -o sanityscrew sanityscrew.cpp`. (Or GLobal Install Via Installer)
-   
-2. **Prepare Program:** Save the example program in a file named `program.ss`.
-   
-3. **Execute:** Run the compiled program, e.g., `./program`.
+### Example 1: Hello World
 
-##### Program Arguments
-`-HELPMEIMLOSINGMYSANITY` - **Help Screen**
-`-FIFC` - **Input files for compiling**
-`-OFTLD` - **Output to working dir**
-`-IST` - **The Installer**
-#### Notes
+Input (hello.ss):
+```
+PRINT Hello, World!
+```
 
-- **Randomness:** The behavior of SanityScrew++ is highly unpredictable due to its random nature.
-- **Madness:** Embrace the chaos and enjoy the journey through this bizarre programming language!
+Output:
+```
+Hello, World!
+```
+
+### Example 2: Arithmetic Operations
+
+Input (arithmetic.ss):
+```
+SET x 10
+SET y 5
+ADD x 5
+SUB y 3
+MULT x 2
+DIV y 2
+PRINT x
+PRINT y
+```
+
+Output:
+```
+20
+1
+```
+
+## Command Reference
+
+- `SET <var> <value>`: Set variable to a value
+- `ADD <var> <value>`: Add value to variable
+- `SUB <var> <value>`: Subtract value from variable
+- `MULT <var> <value>`: Multiply variable by value
+- `DIV <var> <value>`: Divide variable by value
+- `PRINT <var>`: Print variable value
+- `RAND <var> <min> <max>`: Generate a random value between min and max and assign to variable
+- `IF <condition>`: Start an if block based on condition
+- `ELSE`: Else block in an if statement
+- `ENDIF`: End if block
+- `WHILE <condition>`: Start a while loop based on condition
+- `ENDWHILE`: End while loop
+- `INPUT <var>`: Input value into variable
+- `SLEEP <seconds>`: Pause execution for specified seconds
+- `WAIT <seconds>`: Same as SLEEP
+- `HIDE <comment>`: Hide a comment in code
+- `EXIT`: Exit the program
