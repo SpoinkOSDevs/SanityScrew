@@ -5,7 +5,6 @@
   with:
     # A list of files to publish, relative to the repository root.
 
-```yaml
 with:
   files: |
     - bin/release-windows
