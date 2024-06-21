@@ -10,15 +10,15 @@
    git clone https://github.com/SpoinkOSDevs/SanityScrew.git
    ```
 
-2. Navigate to the SRC directory:
+2. Navigate to the src directory:
    ```shell
-   cd SRC
+   cd src
    ```
 
 
 3. Generate the build files with CMake:
    ```shell
-   cmake ..
+   cmake .
    ```
 
 4. Build the SSJITCompiler executable:
