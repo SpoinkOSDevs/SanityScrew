@@ -1,0 +1,3 @@
+- name: Publish GitHub Release Artifacts
+   uses: SierraSoftworks/gh-releases@v1.0.7
+            
