@@ -19,10 +19,7 @@ class SSJIT {
 public:
     static void compileAndRun(const std::vector<std::string>& code) {
         std::string compiledCode = compile(code);
-        interpret(compiledCode);
-    }
-
-private:
+        interpret(compiledCode);}
     static std::string compile(const std::vector<std::string>& code) {
         std::string compiledCode;
         for (const auto& line : code) {
