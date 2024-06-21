@@ -1,0 +1,47 @@
+            - name: Publish GitHub Release Artifacts
+  # You may pin to the exact commit or the version.
+  # uses: SierraSoftworks/gh-releases@7b966f5d35643a1e5f238b973d1f1dbfe31c7942
+  uses: SierraSoftworks/gh-releases@v1.0.7
+  with:
+    # A list of files to publish, relative to the repository root.
+
+The files must be specified as a newline-delimited list of paths.
+
+```yaml
+with:
+  files: |
+    - bin/release-windows
+    - bin/release-linux
+```
+
+    files: 
+    # The GitHub access token which will be used to upload release artifacts.
+
+Usually this will be `secrets.GITHUB_TOKEN`.
+
+    token: # optional
+    # Overwrite existing artifacts with the same name for the specified release.
+
+    overwrite: # optional
+    # The release tag which should receive the artifacts.
+
+By default this will be discovered based on the build environment, however
+you may specify it here if automatic discovery does not work for your usecase.
+
+    release_tag: # optional
+    # The Hashicorp Vault server which should be used to generate signatures.
+
+    vault-server: # optional
+    # The token used to access Hashicorp Vault for generation of signatures.
+
+    vault-token: # optional
+    # The path that the Vault transit engine is mounted at (defaults to 'transit')
+
+    vault-path: # optional
+    # The name of the signing key to use for signature generation through Vault.
+
+    vault-signing-key: # optional
+    # The hash algorithm which should be used to generate a unique hash for the content being signed.
+
+    vault-hash-algorithm: # optional
+          
