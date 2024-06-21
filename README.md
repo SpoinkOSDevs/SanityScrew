@@ -1,91 +1,82 @@
-# SSJIT Compiler
+# SanityScrew Language
 
-SSJIT (SanityScrew Just-In-Time) Compiler is a tool for compiling and interpreting SanityScrew language code.
+SanityScrew is a fictional programming language designed for chaotic and unpredictable coding experiences.
 
-## Features
+## Language Overview
 
-- Compiles SanityScrew code into C++ code
-- Interprets and executes compiled C++ code
-- Supports a wide range of SanityScrew commands and functionalities
+SanityScrew emphasizes randomness, unpredictability, and chaos in programming. It's designed to make code execution entertaining and unconventional.
 
-## Getting Started
+## Commands
 
-1. Clone the repository:
+### Variable Operations
 
-   ```bash
-   git clone https://github.com/your_username/ssjit-compiler.git
-   ```
+- `SET <var> <value>`: Set variable to a value.
+- `ADD <var> <value>`: Add value to variable.
+- `SUB <var> <value>`: Subtract value from variable.
+- `MULT <var> <value>`: Multiply variable by value.
+- `DIV <var> <value>`: Divide variable by value.
+- `MOD <var> <value>`: Modulo variable by value.
+- `RAND <var> <min> <max>`: Generate a random value between min and max and assign it to variable.
 
-2. Compile the SSJIT compiler:
+### Control Flow
 
-   ```bash
-   g++ -o ssjit_compiler ssjit_compiler.cpp SSJIT.h
-   ```
+- `IF <condition>`: Start an if block based on condition.
+- `ELSE`: Else block in an if statement.
+- `ENDIF`: End if block.
+- `WHILE <condition>`: Start a while loop based on condition.
+- `ENDWHILE`: End while loop.
 
-3. Run the compiler with a SanityScrew code file:
+### Input/Output
 
-   ```bash
-   ./ssjit_compiler input_file.ss
-   ```
+- `PRINT <var>`: Print variable value.
+- `INPUT <var>`: Input value into variable.
+
+### Timing and Interruptions
+
+- `SLEEP <seconds>`: Pause execution for specified seconds.
+- `WAIT <seconds>`: Same as SLEEP.
+- `HIDE <comment>`: Hide a comment in code.
+- `EXIT`: Exit the program abruptly.
+
+### Special Effects
+
+- `COOK <line_number>`: Reverse a line of code.
+- `INJECT <var> <value>`: Inject value into a variable with random purity.
+- `TRIP <var>`: Generate hallucinated values for a variable.
+- `DUO`: An interactive dialogue with the Duolingo owl.
+- `RICK`: Random Rick and Morty quotes.
+- `SPAGHETTI`: Random spaghetti-related actions.
+- `HEISENBERG`: Change program state unpredictably.
+- `EXPLODE`: Modify code sequence unpredictably.
+- `METHHEAD`: Introduce wild behavior.
+- `OVERDOSE`: Abruptly end program execution.
+
+### Fun Actions
+
+- `DANCE`: Dance like nobody's watching.
+- `SHUFFLE`: Shuffle a deck of cards.
+- `TEA`: Make a cup of tea.
+- `KETTLE`: Boil the kettle.
+- `CAR`: Drive a car.
+- `WALK`: Take a walk.
+- `WRITE`: Write a story.
+- `READ`: Read a book.
+- `COMPILE`: Compile the code.
+- `SING`: Sing a song.
+- `TALK`: Have a conversation.
+- `THINK`: Ponder life's mysteries.
+- `EAT`: Enjoy a meal.
+- `DRINK`: Have a drink.
+- `SWIM`: Take a swim.
+- `FLY`: Soar through the skies.
+- `JUMP`: Jump for joy!
+- `RUN`: Go for a run.
+- `STOP`: Stop the program.
 
 ## Usage
 
-The SSJIT compiler takes a SanityScrew code file as input and generates an executable that interprets and executes the code.
+To use SanityScrew, write your code using the provided commands and execute it using a SanityScrew interpreter or compiler.
 
 ```bash
-./ssjit_compiler input_file.ss
+./sanityscrew_interpreter program.ss
 ```
-
-## Examples
-
-### Example 1: Hello World
-
-Input (hello.ss):
-```
-PRINT Hello, World!
-```
-
-Output:
-```
-Hello, World!
-```
-
-### Example 2: Arithmetic Operations
-
-Input (arithmetic.ss):
-```
-SET x 10
-SET y 5
-ADD x 5
-SUB y 3
-MULT x 2
-DIV y 2
-PRINT x
-PRINT y
-```
-
-Output:
-```
-20
-1
-```
-
-## Command Reference
-
-- `SET <var> <value>`: Set variable to a value
-- `ADD <var> <value>`: Add value to variable
-- `SUB <var> <value>`: Subtract value from variable
-- `MULT <var> <value>`: Multiply variable by value
-- `DIV <var> <value>`: Divide variable by value
-- `PRINT <var>`: Print variable value
-- `RAND <var> <min> <max>`: Generate a random value between min and max and assign to variable
-- `IF <condition>`: Start an if block based on condition
-- `ELSE`: Else block in an if statement
-- `ENDIF`: End if block
-- `WHILE <condition>`: Start a while loop based on condition
-- `ENDWHILE`: End while loop
-- `INPUT <var>`: Input value into variable
-- `SLEEP <seconds>`: Pause execution for specified seconds
-- `WAIT <seconds>`: Same as SLEEP
-- `HIDE <comment>`: Hide a comment in code
-- `EXIT`: Exit the program
