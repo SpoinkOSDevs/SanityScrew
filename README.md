@@ -1,6 +1,6 @@
 # SanityScrew Language
 
-SanityScrew is a fictional programming language designed for chaotic and unpredictable coding experiences.
+SanityScrew is a programming language designed for chaotic and unpredictable coding experiences.
 
 ## Language Overview
 
