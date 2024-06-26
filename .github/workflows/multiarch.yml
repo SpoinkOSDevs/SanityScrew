@@ -27,7 +27,7 @@ jobs:
 
     - name: Cross-compile for ${{ matrix.arch }}
       run: |
-        cd /src
+        cd ~/src
         mkdir -p build-${{ matrix.arch }}
         cd build-${{ matrix.arch }}
         cmake .. -DCMAKE_TOOLCHAIN_FILE=../toolchain-${{ matrix.arch }}.cmake
@@ -38,7 +38,7 @@ jobs:
 
     - name: Move compiled binaries to artifacts
       run: |
-        cp /src/build-${{ matrix.arch }}/SanityScrew artifacts/SanityScrew_${{ matrix.arch }}
+        cp ~/src/build-${{ matrix.arch }}/SanityScrew artifacts/SanityScrew_${{ matrix.arch }}
 
     - name: Upload artifacts
       uses: actions/upload-artifact@v2
@@ -55,4 +55,4 @@ jobs:
         token: ${{ secrets.TOKEN }}
 
     - name: Clean up
-      run: rm -rf /src/build-${{ matrix.arch }}
+      run: rm -rf ~/src/build-${{ matrix.arch }}
