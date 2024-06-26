@@ -1,4 +1,4 @@
-name: Cross-Compile and Publish
+name: Build and Publish SanityScrew
 
 on:
   push:
@@ -8,55 +8,53 @@ on:
 jobs:
   build:
     runs-on: ubuntu-20.04
+
     strategy:
       matrix:
-        arch: [x86, x64]
+        arch: [x32, x64]
 
     steps:
-    - name: Checkout repository
-      uses: actions/checkout@v2
+    - name: Checkout code
+      uses: actions/checkout@v3
 
     - name: Install dependencies
       run: |
         sudo apt-get update
-        sudo DEBIAN_FRONTEND=noninteractive apt-get install -y cmake g++-multilib libboost-all-dev
+        sudo apt-get install -y cmake libboost-all-dev
+        sudo apt-mark hold grub*
 
-    - name: Find and change to src directory
+    - name: Setup Boost
+      run: sudo apt-get install -y libboost-all-dev
+
+    - name: Create build directory
+      run: mkdir -p build
+
+    - name: Generate CMake files
+      run: cmake -S . -B build
+
+    - name: Build SanityScrew
       run: |
-        src_dir=$(find $GITHUB_WORKSPACE -type d -name src)
-        cd $src_dir
+        cd build
+        cmake --build .
 
-    - name: Generate random tag
-      id: tag
-      run: echo "::set-output name=tag::$(date +%Y%m%d%H%M%S)"
-
-    - name: Cross-compile for ${{ matrix.arch }}
+    - name: Archive build artifacts
       run: |
-        mkdir -p build-${{ matrix.arch }}
-        cd build-${{ matrix.arch }}
-        cmake .. -DCMAKE_TOOLCHAIN_FILE=../toolchain-${{ matrix.arch }}.cmake
-        make
+        mkdir -p artifacts
+        cp build/SanityScrew artifacts/
+      if: success()
 
-    - name: Create artifact directory
-      run: mkdir -p artifacts
-
-    - name: Move compiled binaries to artifacts
+    - name: Create a tag and release
+      id: create_tag
       run: |
-        cp build-${{ matrix.arch }}/SanityScrew ../../artifacts/SanityScrew_${{ matrix.arch }}
-
-    - name: Upload artifacts
-      uses: actions/upload-artifact@v2
-      with:
-        name: build-${{ matrix.arch }}
-        path: artifacts/
+        TAG=v0.1.$(date +%s)
+        echo "TAG=$TAG" >> $GITHUB_ENV
+        git tag $TAG
+        git push origin $TAG
 
     - name: Publish release
-      if: github.ref == 'refs/heads/main'
-      uses: softprops/action-gh-release@v1
+      uses: ncipollo/release-action@v1
       with:
-        files: artifacts/**
-        tag_name: ${{ steps.tag.outputs.tag }}
         token: ${{ secrets.TOKEN }}
-
-    - name: Clean up
-      run: rm -rf build-${{ matrix.arch }}
+        tag: ${{ env.TAG }}
+        name: Release ${{ env.TAG }}
+        files: artifacts/SanityScrew
