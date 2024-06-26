@@ -32,7 +32,7 @@ jobs:
     - name: Compile for ${{ matrix.arch }}
       run: |
         cd src
-        g++ -o SanityScrew main.cpp
+        g++ -std=c++17 -o SanityScrew main.cpp -lstdc++fs
 
     - name: Upload artifacts
       uses: actions/upload-artifact@v2
