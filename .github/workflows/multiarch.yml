@@ -7,7 +7,7 @@ on:
 
 jobs:
   build:
-    runs-on: freebsd-latest
+    runs-on: ubuntu-20.04
     strategy:
       matrix:
         arch: [x86, x64]
@@ -18,12 +18,13 @@ jobs:
 
     - name: Install dependencies
       run: |
-        sudo pkg update -f
-        sudo pkg install -y cmake gcc boost-libs
+        sudo apt-get update
+        sudo DEBIAN_FRONTEND=noninteractive apt-get install -y cmake g++-multilib libboost-all-dev
 
     - name: Find and change to src directory
       run: |
-        cd $(find / -type d -name src)
+        src_dir=$(find $GITHUB_WORKSPACE -type d -name src)
+        cd $src_dir
 
     - name: Generate random tag
       id: tag
