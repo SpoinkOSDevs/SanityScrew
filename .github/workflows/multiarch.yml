@@ -7,10 +7,10 @@ on:
 
 jobs:
   build:
-    runs-on: ubuntu-latest
+    runs-on: arch-latest
     strategy:
       matrix:
-        arch: [x86, x64, amd64]
+        arch: [x86, x64]
 
     steps:
     - name: Checkout repository
@@ -18,34 +18,19 @@ jobs:
 
     - name: Install dependencies
       run: |
-        sudo apt-get update
-        sudo DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends cmake g++-multilib libboost-all-dev
+        sudo pacman -Syu --noconfirm
+        sudo pacman -S --noconfirm cmake gcc-multilib boost
 
-    - name: Find and change to src directory
-      id: find-src
+    - name: Navigate to src directory
       run: |
-        found=0
-        dir=$(pwd)
-        while [[ "$dir" != "/" ]]; do
-          if [[ -d "$dir/src" ]]; then
-            found=1
-            echo "::set-output name=src-dir::$dir/src"
-            break
-          fi
-          dir=$(dirname "$dir")
-        done
-        if [[ $found -ne 1 ]]; then
-          echo "src directory not found"
-          exit 1
-        fi
-
+        cd $(find /home -type d -name src)
+      
     - name: Generate random tag
       id: tag
       run: echo "::set-output name=tag::$(date +%Y%m%d%H%M%S)"
 
     - name: Cross-compile for ${{ matrix.arch }}
       run: |
-        cd ${{ steps.find-src.outputs['src-dir'] }}
         mkdir -p build-${{ matrix.arch }}
         cd build-${{ matrix.arch }}
         cmake .. -DCMAKE_TOOLCHAIN_FILE=../toolchain-${{ matrix.arch }}.cmake
@@ -56,7 +41,7 @@ jobs:
 
     - name: Move compiled binaries to artifacts
       run: |
-        cp ${{ steps.find-src.outputs['src-dir'] }}/build-${{ matrix.arch }}/SanityScrew artifacts/SanityScrew_${{ matrix.arch }}
+        cp build-${{ matrix.arch }}/SanityScrew ../../artifacts/SanityScrew_${{ matrix.arch }}
 
     - name: Upload artifacts
       uses: actions/upload-artifact@v2
@@ -73,4 +58,4 @@ jobs:
         token: ${{ secrets.TOKEN }}
 
     - name: Clean up
-      run: rm -rf ${{ steps.find-src.outputs['src-dir'] }}/build-${{ matrix.arch }}
+      run: rm -rf build-${{ matrix.arch }}
