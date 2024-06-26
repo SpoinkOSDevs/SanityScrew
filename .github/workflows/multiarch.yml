@@ -7,7 +7,7 @@ on:
 
 jobs:
   build:
-    runs-on: arch-latest
+    runs-on: freebsd-latest
     strategy:
       matrix:
         arch: [x86, x64]
@@ -18,13 +18,13 @@ jobs:
 
     - name: Install dependencies
       run: |
-        sudo pacman -Syu --noconfirm
-        sudo pacman -S --noconfirm cmake gcc-multilib boost
+        sudo pkg update -f
+        sudo pkg install -y cmake gcc boost-libs
 
-    - name: Navigate to src directory
+    - name: Find and change to src directory
       run: |
-        cd $(find /home -type d -name src)
-      
+        cd $(find / -type d -name src)
+
     - name: Generate random tag
       id: tag
       run: echo "::set-output name=tag::$(date +%Y%m%d%H%M%S)"
