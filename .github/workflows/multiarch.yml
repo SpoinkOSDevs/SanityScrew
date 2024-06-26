@@ -1,0 +1,58 @@
+name: Cross-Compile and Publish
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        arch: [x86, x64, amd64]
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2
+
+    - name: Install dependencies
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y cmake g++-multilib libboost-all-dev
+
+    - name: Generate random tag
+      id: tag
+      run: echo "::set-output name=tag::$(date +%Y%m%d%H%M%S)"
+
+    - name: Cross-compile for ${{ matrix.arch }}
+      run: |
+        cd /src
+        mkdir -p build-${{ matrix.arch }}
+        cd build-${{ matrix.arch }}
+        cmake .. -DCMAKE_TOOLCHAIN_FILE=../toolchain-${{ matrix.arch }}.cmake
+        make
+
+    - name: Create artifact directory
+      run: mkdir -p artifacts
+
+    - name: Move compiled binaries to artifacts
+      run: |
+        cp /src/build-${{ matrix.arch }}/SanityScrew artifacts/SanityScrew_${{ matrix.arch }}
+
+    - name: Upload artifacts
+      uses: actions/upload-artifact@v2
+      with:
+        name: build-${{ matrix.arch }}
+        path: artifacts/
+
+    - name: Publish release
+      if: github.ref == 'refs/heads/main'
+      uses: softprops/action-gh-release@v1
+      with:
+        files: artifacts/**
+        tag_name: ${{ steps.tag.outputs.tag }}
+        token: ${{ secrets.TOKEN }}
+
+    - name: Clean up
+      run: rm -rf /src/build-${{ matrix.arch }}
