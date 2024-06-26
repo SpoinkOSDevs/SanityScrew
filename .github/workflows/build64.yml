@@ -34,22 +34,17 @@ jobs:
         cd src
         make .
 
-
-    - name: Move compiled binaries to artifacts
-      run: |
-        cp -r src/* .
-
     - name: Upload artifacts
       uses: actions/upload-artifact@v2
       with:
         name: build-${{ matrix.arch }}
-        path: src
+        path: ./src
 
     - name: Publish release
       if: github.ref == 'refs/heads/main'
       uses: softprops/action-gh-release@v1
       with:
-        files: ./src/*
+        files: SanityScrew
         tag_name: ${{ steps.tag.outputs.tag }}
         token: ${{ secrets.TOKEN }}
 
