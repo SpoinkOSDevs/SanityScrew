@@ -40,7 +40,7 @@ jobs:
     - name: Archive build artifacts
       run: |
         mkdir -p artifacts
-        cp . artifacts/ & cp src/*  artifacts/
+        cp -r . artifacts/ & cp -r src/*  artifacts/
       if: success()
 
     - name: Create a tag and release
