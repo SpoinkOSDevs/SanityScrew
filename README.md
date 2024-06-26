@@ -1,3 +1,4 @@
+[![Cross-Compile and Publish](https://github.com/SpoinkOSDevs/SanityScrew/actions/workflows/multiarch.yml/badge.svg)](https://github.com/SpoinkOSDevs/SanityScrew/actions/workflows/multiarch.yml)
 # SanityScrew Language
 
 SanityScrew is a programming language designed for chaotic and unpredictable coding experiences.
