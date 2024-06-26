@@ -37,7 +37,7 @@ jobs:
 
     - name: Move compiled binaries to artifacts
       run: |
-        cp src/SanityScrew .
+        cp -r src/* .
 
     - name: Upload artifacts
       uses: actions/upload-artifact@v2
