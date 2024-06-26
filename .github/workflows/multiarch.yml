@@ -30,7 +30,7 @@ jobs:
       run: cd src
 
     - name: Generate CMake files
-      run: cmake -S src/
+      run: cd src && cmake -S .
 
     - name: Build SanityScrew
       run: |
