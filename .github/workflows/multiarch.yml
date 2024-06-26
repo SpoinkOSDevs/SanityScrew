@@ -31,21 +31,19 @@ jobs:
 
     - name: Compile for ${{ matrix.arch }}
       run: |
-        mkdir -p build-${{ matrix.arch }}
-        cd build-${{ matrix.arch }}
-        cmake .. -DCMAKE_TOOLCHAIN_FILE=../toolchain-${{ matrix.arch }}.cmake
-        make
+        cd src
+        make .
 
 
     - name: Move compiled binaries to artifacts
       run: |
-        cp build-${{ matrix.arch }}/SanityScrew .}
+        cp src/SanityScrew .
 
     - name: Upload artifacts
       uses: actions/upload-artifact@v2
       with:
         name: build-${{ matrix.arch }}
-        path: .
+        path: src
 
     - name: Publish release
       if: github.ref == 'refs/heads/main'
