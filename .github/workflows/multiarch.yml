@@ -26,7 +26,7 @@ jobs:
     - name: Setup Boost
       run: sudo apt-get install -y libboost-all-dev
 
-    - name: Create build directory
+    - name: Cd into Source DIR
       run: cd src
 
     - name: Generate CMake files
@@ -34,7 +34,7 @@ jobs:
 
     - name: Build SanityScrew
       run: |
-        cd build
+        cd src
         cmake --build .
 
     - name: Archive build artifacts
